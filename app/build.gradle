@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.vsoft.apps.vpicker"
+        minSdkVersion 14
+        targetSdkVersion 30
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "store", "user"
+
+    productFlavors {
+        googleplay {
+            versionCode 8
+            versionName "0.0.8"
+            dimension "store"
+        }
+
+        // as opposed to kids
+        adult {
+            dimension "user"
+        }
+
+        // attempt to adapt app for children.
+        kids {
+            dimension "user"
+            applicationIdSuffix ".kids"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.melnykov:floatingactionbutton:1.1.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.jpardogo.materialtabstrip:library:1.0.9'
+}
